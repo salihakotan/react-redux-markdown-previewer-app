@@ -1,11 +1,20 @@
-import React from 'react'
+import React from "react";
 
 function Header() {
-  return (
-    <div>
-        <h1>Markdown Previewer</h1>
-    </div>
-  )
+
+
+const handleClick = () => {
+    //set value to sample texts
 }
 
-export default Header
+  return (
+    <div>
+      <div className="previewBtnContainer">
+        <button onClick={()=> handleClick()} className="samplePreviewBtn">?</button>
+      </div>
+      <h1>Markdown Previewer</h1>
+    </div>
+  );
+}
+
+export default Header;
