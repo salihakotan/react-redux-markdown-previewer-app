@@ -1,18 +1,24 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { isShowingHelpSelector, showHelp } from "../redux/markdownSlice";
 
 function Header() {
+  const dispatch = useDispatch();
 
+  const isShowingHelp = useSelector(isShowingHelpSelector)
 
-const handleClick = () => {
-    //set value to sample texts
-}
+  const handleClick = () => {
+    dispatch(showHelp(!isShowingHelp));
+  };
 
   return (
     <div>
       <div className="previewBtnContainer">
-        <button onClick={()=> handleClick()} className="samplePreviewBtn">?</button>
+        <button style={{backgroundColor: isShowingHelp ? "#000" : "#034444"}}  onClick={() => handleClick()} className="samplePreviewBtn">
+          ?
+        </button>
       </div>
-      <h1>Markdown Previewer</h1>
+      <h1 className="title">Markdown Previewer</h1>
     </div>
   );
 }

@@ -1,16 +1,28 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { currentTextSelector, helpTextSelector, isShowingHelpSelector, setCurrentText } from '../redux/markdownSlice'
+import { marked } from 'marked'
+
 
 function Inputs() {
 
-    const [entryText,setEntryText] = useState("")
+    const isShowingHelp = useSelector(isShowingHelpSelector)
+    const currentText = useSelector(currentTextSelector)
+    const helpText = useSelector(helpTextSelector)
+
+
+    const dispatch = useDispatch()
+    
+    const parsedText = marked(!isShowingHelp ? currentText : helpText, { sanitize: true});
+    const processedText = {__html:parsedText}
 
     
 
 
   return (
-    <div>
-        <textarea value={entryText} onChange={(e)=> setEntryText(e.target.value)} className='textAreaMarkdown entryTextArea'></textarea>
-        <textarea value={entryText} disabled className='textAreaMarkdown previewTextArea'></textarea>
+    <div style={{display:"flex"}}>
+        <textarea placeholder='enter text' readOnly={isShowingHelp} value={isShowingHelp ? helpText : currentText} onChange={(e)=> dispatch(setCurrentText(e.target.value))} className='textAreaMarkdown entryTextArea'></textarea>
+        <div dangerouslySetInnerHTML={processedText}  className='textAreaMarkdown previewTextArea'></div>
 
     </div>
   )
