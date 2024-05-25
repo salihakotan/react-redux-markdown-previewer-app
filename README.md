@@ -2,7 +2,7 @@
 
 This project assignment has been prepared for the 'Kodluyoruz' React Redux course. It is a sample markdown previewer app.
 
-**DEMO:** 
+**DEMO:** https://sk-react-redux-markdown-previewer-app.netlify.app/
 
 ---
 
